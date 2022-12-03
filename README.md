@@ -4,4 +4,9 @@
 ## Day 1 - Elves and their Snacks
 Part 1 - Done <br>
 Part 2 - Done <br>
-4 stars <br>
+2 stars <br>
+
+## Day 2 - Rock Paper Scissors
+Part 1 - Done <br>
+Part 2 - Done <br>
+2 stars <br>
