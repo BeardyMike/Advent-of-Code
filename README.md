@@ -6,3 +6,4 @@
 [Day 2 - Completed - 2 Stars](https://github.com/BeardyMike/Advent-of-Code/tree/main/2022/Day%202) <br>
 [Day 3 - Completed - 2 Stars](https://github.com/BeardyMike/Advent-of-Code/tree/main/2022/Day%203) <br>
 [Day 4 - Completed - 2 Stars](https://github.com/BeardyMike/Advent-of-Code/tree/main/2022/Day%204) <br>
+[Day 5 - Completed - 2 Stars](https://github.com/BeardyMike/Advent-of-Code/tree/main/2022/Day%205) <br>
