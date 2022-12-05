@@ -1,43 +1,28 @@
 def partone():
-    # I couldnt figurte out how to parse the data from the first ten lines of the file
-    # so I just hard coded the data into a dictionary, and removed the lines from the file
-    crate = {}
-    crate["1"] = ['N', 'R', 'G', 'P',]
-    crate["2"] = ['J', 'T', 'B', 'L','F', 'G', 'D', 'C',]
-    crate["3"] = ['M', 'S', 'V',]
-    crate["4"] = ['L', 'S', 'R', 'C','Z', 'P',]
-    crate["5"] = ['P', 'S', 'L', 'V','C', 'W', 'D', 'Q',]
-    crate["6"] = ['C', 'T', 'N', 'W','D', 'M', 'S',]
-    crate["7"] = ['H', 'D', 'G', 'W','P',]
-    crate["8"] = ['Z', 'L', 'P', 'H','S', 'C', 'M', 'V',]
-    crate["9"] = ['R', 'P', 'F', 'L','W', 'G', 'Z',]
-
-    with open("2022\Day 5\input.txt",'r') as f:
-        # read the input file
-        for line in f.readlines()[10:512]:
-            line = line.replace("move ", "")
-            line = line.replace("from ", "")
-            line = line.replace("to ", "")
-            line = line.replace(" ", ",")
-            line = line.replace("\n", "")
-            # split the line into a dictionary of the values
-            line = line.split(',')
-            cranemove = line[0]
-            cranefrom = line[1]
-            craneto = line[2]
-            #remove spaces from the new variables
-            for i in range(0, int(cranemove)):
-                crate[craneto].append(crate[cranefrom].pop())
-        print("-------Part1-------")       
-        print(crate["1"])
-        print(crate["2"])
-        print(crate["3"])
-        print(crate["4"])
-        print(crate["5"])
-        print(crate["6"])
-        print(crate["7"])
-        print(crate["8"])
-        print(crate["9"])
-        print("----End of Part1----") 
-        print()
-        print()
+    answer = ""
+    with open('2022\Day 5\input.txt') as f:
+        stacks = {"1":[],"2":[],"3":[],"4":[],"5":[],"6":[],"7":[],"8":[],"9":[]}
+        for line in f.readlines()[0:8]:
+            stacks["1"].insert(0,line[1])
+            stacks["2"].insert(0,line[5])
+            stacks["3"].insert(0,line[9])
+            stacks["4"].insert(0,line[13])
+            stacks["5"].insert(0,line[17])
+            stacks["6"].insert(0,line[21])
+            stacks["7"].insert(0,line[25])
+            stacks["8"].insert(0,line[29])
+            stacks["9"].insert(0,line[33])
+            for i in stacks:
+                while " " in stacks[i]:
+                    stacks[i].remove(" ")      
+    with open('2022\Day 5\input.txt') as f:
+        for line in f.readlines()[10:513]:      #skip over the first 10 lines of the file
+            line = line.replace("move ", "").replace("from ", "").replace("to ", "").replace(" ", ",").replace("\n", "").split(',')
+            for i in range(0, int(line[0])):
+                stacks[str(line[2])].append(stacks[str(line[1])].pop())
+        print("--Part1--")
+                # for i in stacks add stacks[i][-1] to a string
+        for i in stacks: answer = answer + stacks[i][-1]
+        print(answer)
+        print("    -    ")
+    return
