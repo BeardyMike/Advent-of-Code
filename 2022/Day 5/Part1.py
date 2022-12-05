@@ -12,10 +12,9 @@ def partone():
     crate["8"] = ['Z', 'L', 'P', 'H','S', 'C', 'M', 'V',]
     crate["9"] = ['R', 'P', 'F', 'L','W', 'G', 'Z',]
 
-    # read the input file
     with open("2022\Day 5\input.txt",'r') as f:
         # read the input file
-        for line in f:
+        for line in f.readlines()[10:512]:
             line = line.replace("move ", "")
             line = line.replace("from ", "")
             line = line.replace("to ", "")
