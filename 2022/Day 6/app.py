@@ -1,5 +1,3 @@
 from Part1 import partone
-from Part2 import parttwo
-
-partone()
-parttwo()
+print("Part one's answer is", partone(4))
+print("Part two's answer is", partone(14))
