@@ -1,3 +1,3 @@
 def partone():
-    
+
     return
