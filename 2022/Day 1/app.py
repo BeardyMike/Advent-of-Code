@@ -1,5 +1,5 @@
 #part 1
-with open("2022\Day 1\input.txt", 'r') as file:
+with open("input.txt", 'r') as file:
     valyoos = file.read()
     valyoos = valyoos.split('\n\n')
     valyoos = [q.split('\n') for q in valyoos]
