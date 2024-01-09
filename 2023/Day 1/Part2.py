@@ -5,26 +5,20 @@ def function():
         numbersfixed = {"one": "o1e", "two": "t2o", "three": "t3e", "four": "f4r", "five": "f5e", "six": "s6x", "seven": "s7n", "eight": "e8t", "nine": "n9e"}
         strings = []
         for line in values:
-            # search the line for any text that matches the keys in the numbers dictionary.
-            # if there is a match, replace the text with the corresponding value in numbersfixed.
-            for number in numbers:
+            for number in numbersfixed:
                 line = line.replace(number, numbersfixed[number])
-            # remove any letters from the line.
             for letter in alphabet:
                 line = line.replace(letter, '')
-            # remove any spaces from the line.
             line = line.replace(' ', '')
-            # remove any newlines from the line.
             line = line.replace('\n', '')
-            # add the line to the strings list.
             number = list(line)
             string = number[0] + number[-1]
             string = int(string)
             strings.append(string)
-            #print(string)
         string = ""
         total = 0
         for string in strings:
             total += string
         return total
 
+print(function())

@@ -1,58 +1,93 @@
 import re
 alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-def checker(cubes,colour):
-    redlimit = 12
-    greenlimit = 13
-    bluelimit = 14
-    #check if the number of cubes exceeds the limit for the colour.
-    if colour == "red":
-        if int(cubes) > redlimit:
-            return False
-    elif colour == "green":
-        if int(cubes) > greenlimit:
-            return False
-    elif colour == "blue":
-        if int(cubes) > bluelimit:
-            return False
-    return True
-
+RedLimit = 12
+GreenLimit = 13
+BlueLimit = 14
 def function():
+    total = 0
     with open("2023\Day 2\input.txt", "r") as f:
         for line in f:
+            #print("--------------------")
+            colour = ""
+            cubes = ""
+            r = ""
+            m = ""
+            redcubes = [0]
+            bluecubes = [0]
+            greencubes = [0]
             line = line.replace('\n', '')
             line = line.replace(';', ',')
             line = line.replace(' ', '')
-            print(line)
             #break the line into a list of parts, separated by colons.
             parts = line.split(":")
-            print(parts)
+            #print(parts)
             #the first part is the GameID.
             GameID = parts[0]
             #remove any letters in alphabet from the GameID.
             for letter in alphabet:
                 GameID = GameID.replace(letter, "")
+            #print("GameID is " +GameID)
             #the second part is the PulledCubes
             PulledCubes = parts[1]
             #split the PulledCubes into a list of cubes, separated by commas.
             PulledCubes = PulledCubes.split(",")
-            print(PulledCubes)
+            #print(PulledCubes)
             #split each PulledCube after the number.
             for PulledCube in PulledCubes:
                 r = re.compile("([0-9]+)([a-zA-Z]+)")
                 m = r.match(PulledCube)
-                print(m.group(1))
-                print(m.group(2))
+                #print(m.group(1) + " " + m.group(2))
                 colour = m.group(2)
                 cubes = m.group(1)
-                #check if the number of cubes exceeds the limit for the colour.                          
-                validGameIDs = []
-                if checker(cubes,colour) == True:
-                    #if it passes the checker function, add GameID to a list of valid GameIDs.
-                    validGameIDs.append(GameID)
-                # add all the gameIDs in the list of valid GameIDs together into one nubmer.
-                total = 0
-                for GameID in validGameIDs:
-                    total += int(GameID)
-                #return the total.
-                return total
+                if colour == "red":
+                    #add the cubes to redcubes
+                    redcubes.append(cubes)
+                    #print(redcubes)
+                elif colour == "blue":
+                    #add the cubes to bluecubes
+                    bluecubes.append(cubes)
+                    #print(bluecubes)
+                elif colour == "green":
+                    #add the cubes to greencubes
+                    greencubes.append(cubes)
+                    #print(greencubes)
+            #check if any number in redcubes is more than 12
+            for redcube in redcubes:
+                if int(redcube) > RedLimit:
+                    #print("there are more than 12 red cubes.")
+                    #print("there are " + redcube + " red cubes.")
+                    redvalid = False
+                    break
+                else:
+                    redvalid = True
+            #check if any number in bluecubes is more than 12
+            for bluecube in bluecubes:
+                if int(bluecube) > BlueLimit:
 
+                    #print("there are more than 13 blue cubes.")
+                    #print("there are " + bluecube + " blue cubes.")
+                    bluevalid = False
+                    break
+                else:
+                    bluevalid = True
+            #check if any number in greencubes is more than 12
+            for greencube in greencubes:
+                if int(greencube) > GreenLimit:
+                    #print("there are more than 14 green cubes.")
+                    #print("there are " + greencube + " green cubes.")
+                    greenvalid = False
+                    break
+                else:
+                    greenvalid = True
+            if redvalid == True and bluevalid == True and greenvalid == True:
+                #print("GameID " + GameID + " is valid.")
+                #add the gameID to the total
+                #print("Adding " + GameID + " to " + str(total) + ".")
+                total += int(GameID)
+                #print("The total is now " + str(total))
+            else:
+                pass
+                #print("GameID " + GameID + " is invalid.")
+            #print("--------------------")
+        #print("The total is " + str(total))
+    return total
